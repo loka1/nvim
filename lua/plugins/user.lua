@@ -1,16 +1,8 @@
 -- You can also add or configure plugins by creating files in this `plugins/` folder
+-- Note: Laravel plugin is already loaded via astrocommunity.pack.laravel
 
 ---@type LazySpec
 return {
-
-  -- == Add useful plugins for web development ==
-
-  -- Laravel development helpers (additional to astrocommunity.pack.laravel)
-  {
-    "simrat39/laravel.nvim",
-    ft = "php",
-    config = true,
-  },
 
   -- Blade navigation
   {
