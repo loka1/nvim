@@ -3,6 +3,43 @@
 
 ---@type LazySpec
 return {
+  -- Add vim commands for Laravel (the plugin uses Lua API, not vim commands)
+  {
+    "AstroNvim/astrocore",
+    ---@param opts AstroCoreOpts
+    opts = function(_, opts)
+      local maps = assert(opts.mappings)
+      -- Laravel vim commands
+      vim.api.nvim_create_user_command("Laravel", function(opts)
+        local args = opts.args
+        if args == "" then
+          require("nio").run(function() Laravel.commands.run("artisan") end)
+        else
+          require("nio").run(function() Laravel.commands.run("artisan " .. args) end)
+        end
+      end, { nargs = "?", desc = "Laravel artisan commands" })
+
+      vim.api.nvim_create_user_command("Artisan", function(opts)
+        require("nio").run(function() Laravel.commands.run("artisan") end)
+      end, { nargs = 0, desc = "Laravel artisan" })
+
+      vim.api.nvim_create_user_command("Composer", function(opts)
+        require("nio").run(function() Laravel.commands.run("composer") end)
+      end, { nargs = 0, desc = "Laravel composer" })
+
+      vim.api.nvim_create_user_command("Sail", function(opts)
+        require("nio").run(function() Laravel.commands.run("sail") end)
+      end, { nargs = 0, desc = "Laravel sail" })
+
+      vim.api.nvim_create_user_command("Npm", function(opts)
+        require("nio").run(function() Laravel.commands.run("npm") end)
+      end, { nargs = 0, desc = "Laravel npm" })
+
+      vim.api.nvim_create_user_command("Yarn", function(opts)
+        require("nio").run(function() Laravel.commands.run("yarn") end)
+      end, { nargs = 0, desc = "Laravel yarn" })
+    end,
+  },
 
   -- Blade navigation
   {
