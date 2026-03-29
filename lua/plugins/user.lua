@@ -2,6 +2,20 @@
 
 ---@type LazySpec
 return {
+  -- Show hidden files in neo-tree file explorer by default
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_hidden = false,
+        },
+      },
+    },
+  },
+
   -- Color highlighting for CSS/Tailwind
   {
     "norcalli/nvim-colorizer.lua",
