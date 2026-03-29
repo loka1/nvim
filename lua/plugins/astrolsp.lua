@@ -13,8 +13,9 @@ return {
     -- Configuration table of features provided by AstroLSP
     features = {
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
+      inlay_hints = true, -- enable inlay hints for better code understanding
       semantic_tokens = true, -- enable/disable semantic token highlighting
+      signature_help = true,
     },
     -- control auto formatting on save
     formatting = {
@@ -24,14 +25,14 @@ return {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "markdown",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 3000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -43,12 +44,27 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      -- PHP - Increase file size limit for large Laravel projects
       intelephense = {
         settings = {
           intelephense = {
             files = {
-              maxSize = 5000000, -- 5MB for large Laravel projects
+              maxSize = 10000000, -- 10MB for large Laravel projects
+            },
+          },
+        },
+      },
+      -- TypeScript - Enhanced inlay hints
+      vtsls = {
+        settings = {
+          typescript = {
+            inlayHints = {
+              enumMemberValues = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              parameterNames = { enabled = "all" },
+              parameterTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              variableTypes = { enabled = true },
             },
           },
         },
@@ -63,7 +79,7 @@ return {
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
 
-      -- Use typescript.nvim for enhanced TypeScript support
+      -- Use vtsls for enhanced TypeScript support
       tsserver = function(_, opts)
         require("typescript").setup({ server = opts })
       end,
@@ -93,7 +109,7 @@ return {
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
-        -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
+        -- Default LSP mappings
         gD = {
           function() vim.lsp.buf.declaration() end,
           desc = "Declaration of current symbol",
@@ -106,22 +122,30 @@ return {
             return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
           end,
         },
-        -- TypeScript/Organize imports
+        -- TypeScript specific mappings
         ["<Leader>lo"] = {
           function() require("typescript").organize_imports() end,
           desc = "Organize Imports",
           cond = "typescript",
         },
-        -- TypeScript/Remove unused
         ["<Leader>lR"] = {
           function() require("typescript").remove_unused() end,
           desc = "Remove Unused",
           cond = "typescript",
         },
-        -- TypeScript/Rename file
         ["<Leader>lr"] = {
           function() require("typescript").rename_file() end,
           desc = "Rename File",
+          cond = "typescript",
+        },
+        ["<Leader>li"] = {
+          function() require("typescript").add_missing_imports() end,
+          desc = "Add Missing Imports",
+          cond = "typescript",
+        },
+        ["<Leader>lu"] = {
+          function() require("typescript").update_all_ts_files() end,
+          desc = "Update TS Files",
           cond = "typescript",
         },
       },

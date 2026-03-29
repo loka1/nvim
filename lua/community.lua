@@ -15,6 +15,7 @@ return {
   -- JavaScript/TypeScript/Next.js
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.biome" }, -- Alternative to Prettier for JS/TS
 
   -- Tailwind CSS
   { import = "astrocommunity.pack.tailwindcss" },
@@ -29,9 +30,31 @@ return {
   { import = "astrocommunity.pack.prettier" },
   { import = "astrocommunity.pack.eslint" },
 
-  -- Useful extras
-  { import = "astrocommunity.pack.git" },
+  -- Database & ORM support
+  { import = "astrocommunity.pack.sql" },
+  { import = "astrocommunity.pack.prisma" },
+
+  -- DevOps & Config files
   { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.toml" },
+
+  -- Git integration
+  { import = "astrocommunity.git.diffview-nvim" },
+  { import = "astrocommunity.git.lazygit-nvim" },
+
+  -- Completion enhancements
+  { import = "astrocommunity.completion.cmp-git" },
+  { import = "astrocommunity.completion.cmp-emoji" },
+
+  -- LSP enhancements
+  { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
+
+  -- Editing enhancements
+  { import = "astrocommunity.editing-support.nvim-surround" },
+  { import = "astrocommunity.editing-support.smartcolumn-nvim" },
+  { import = "astrocommunity.editing-support.conform-nvim" },
 }

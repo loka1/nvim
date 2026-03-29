@@ -5,19 +5,25 @@ return {
 
   -- == Add useful plugins for web development ==
 
-  -- Laravel development helpers
+  -- Laravel development helpers (additional to astrocommunity.pack.laravel)
   {
     "simrat39/laravel.nvim",
     ft = "php",
     config = true,
   },
 
-  -- Color highlighting for CSS/ Tailwind
+  -- Blade navigation
+  {
+    "ricardoramirezr/blade-nav.nvim",
+    ft = { "blade", "php" },
+  },
+
+  -- Color highlighting for CSS/Tailwind
   {
     "norcalli/nvim-colorizer.lua",
     event = "User AstroFile",
     opts = {
-      filetypes = { "html", "css", "scss", "javascript", "typescript", "typescriptreact", "php", "blade" },
+      filetypes = { "html", "css", "scss", "javascript", "typescript", "typescriptreact", "php", "blade", "vue", "svelte" },
     },
   },
 
@@ -28,14 +34,28 @@ return {
     opts = {},
   },
 
-  -- Auto close tags in HTML/JSX/Blade
+  -- Auto close tags in HTML/JSX/Blade/Vue
   {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
     opts = {},
   },
 
-  -- Git integration enhancements
+  -- Git integration enhancements (diffview for PR-like experience)
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
+    config = true,
+  },
+
+  -- Lazygit integration
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+  -- Better git blame
   {
     "lewis6991/gitsigns.nvim",
     event = "User AstroFile",
@@ -56,8 +76,27 @@ return {
         map("n", "[h", gitsigns.prev_hunk, "Prev Hunk")
         map("n", "<leader>hs", gitsigns.stage_hunk, "Stage Hunk")
         map("n", "<leader>hr", gitsigns.reset_hunk, "Reset Hunk")
+        map("n", "<leader>hb", gitsigns.blame_line, "Blame Line")
       end,
     },
+  },
+
+  -- TypeScript CLI for type checking
+  {
+    "dmmulroy/tsc.nvim",
+    cmd = "TSC",
+    opts = {
+      keymaps = {
+        open_quickfix = "<leader>lq",
+      },
+    },
+  },
+
+  -- Package.json info
+  {
+    "vuki656/package-info.nvim",
+    event = "BufRead package.json",
+    opts = {},
   },
 
   -- == Override default plugins ==
@@ -70,6 +109,7 @@ return {
       luasnip.filetype_extend("javascript", { "javascriptreact" })
       luasnip.filetype_extend("typescript", { "typescriptreact" })
       luasnip.filetype_extend("html", { "blade", "php" })
+      luasnip.filetype_extend("typescript", { "vue" })
       require "astronvim.plugins.configs.luasnip"(plugin, opts)
     end,
   },
@@ -87,7 +127,25 @@ return {
         Rule("'", "'", { "javascript", "typescript", "typescriptreact", "javascriptreact" }),
         Rule('"', '"', { "javascript", "typescript", "typescriptreact", "javascriptreact" }),
         Rule("{{", "}}", "blade"),
+        Rule("{", "}", "css"),
+        Rule("{", "}", "scss"),
       }
     end,
+  },
+
+  -- Surround plugin for easy quote/bracket changes
+  {
+    "echasnovski/mini.surround",
+    opts = {
+      mappings = {
+        add = "gsa",
+        delete = "gsd",
+        find = "gsf",
+        find_left = "gsF",
+        highlight = "gsh",
+        replace = "gsr",
+        update_n_lines = "gsn",
+      },
+    },
   },
 }

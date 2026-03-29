@@ -15,15 +15,17 @@ return {
         "lua-language-server",
         "stylua",
 
-        -- PHP
+        -- PHP & Laravel
         "intelephense",
         "phpactor",
         "blade-formatter",
+        "pint", -- Laravel PHP formatter
 
         -- JavaScript/TypeScript/Next.js
-        "typescript-language-server",
+        "vtsls", -- Better TypeScript language server
         "eslint-lsp",
-        "prettier",
+        "prettierd", -- Faster prettier
+        "biome", -- Alternative JS/TS formatter/linter
         "ts-node",
 
         -- Python
@@ -31,6 +33,7 @@ return {
         "black",
         "isort",
         "ruff",
+        "ruff-lsp",
         "debugpy",
 
         -- C/C++
@@ -43,6 +46,19 @@ return {
         "css-lsp",
         "html-lsp",
         "emmet-language-server",
+
+        -- Database & ORM
+        "prisma-language-server",
+
+        -- DevOps
+        "docker-language-server",
+        "hadolint", -- Dockerfile linter
+        "terraform-ls",
+        "tflint",
+
+        -- Config files
+        "yaml-language-server",
+        "json-lsp",
 
         -- Other useful tools
         "tree-sitter-cli",
