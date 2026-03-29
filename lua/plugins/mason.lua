@@ -28,8 +28,7 @@ return {
 
       -- C/C++
       "clangd",
-      "cmake",
-      "cppdbg",
+      "codelldb",
 
       -- Web
       "tailwindcss-language-server",
