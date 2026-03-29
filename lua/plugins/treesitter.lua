@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- Customize Treesitter
 
 ---@type LazySpec
@@ -12,65 +10,42 @@ return {
       "vim",
       "vimdoc",
 
-      -- PHP & Laravel
+      -- PHP
       "php",
       "blade",
 
-      -- JavaScript/TypeScript/Next.js
+      -- JavaScript/TypeScript
       "javascript",
       "typescript",
       "tsx",
       "jsdoc",
-      "astro", -- For Astro framework
 
       -- HTML/CSS
       "html",
       "css",
       "scss",
-      "svelte",
-      "vue",
 
       -- Python
       "python",
-      "pymanifest",
 
       -- C/C++
       "cpp",
       "c",
       "cmake",
 
-      -- Config & Data
+      -- Config files
       "json",
       "yaml",
       "toml",
-      "json5",
 
-      -- DevOps
-      "dockerfile",
-      "terraform",
-      "hcl",
-
-      -- Database
-      "sql",
-      "prisma",
-
-      -- Other useful languages
+      -- Other
       "markdown",
       "markdown_inline",
       "regex",
-      "gitignore",
       "bash",
-      "make",
-      "rust", -- Often useful for tooling
+      "dockerfile",
     },
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-    incremental_selection = {
-      enable = true,
-    },
+    highlight = { enable = true },
+    indent = { enable = true },
   },
 }
