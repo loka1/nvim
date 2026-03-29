@@ -133,19 +133,6 @@ return {
     end,
   },
 
-  -- Surround plugin for easy quote/bracket changes
-  {
-    "echasnovski/mini.surround",
-    opts = {
-      mappings = {
-        add = "gsa",
-        delete = "gsd",
-        find = "gsf",
-        find_left = "gsF",
-        highlight = "gsh",
-        replace = "gsr",
-        update_n_lines = "gsn",
-      },
-    },
-  },
+  -- Surround plugin for easy quote/bracket changes (nvim-surround from astrocommunity)
+  -- Keybindings: gsa (add), gsd (delete), gsr (replace), gs<character>
 }
