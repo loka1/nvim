@@ -35,6 +35,12 @@ return {
       "css-lsp",
       "html-lsp",
 
+      -- Go
+      "gopls",
+      "goimports",
+      "delve",
+      "golines",
+
       -- Config files
       "yaml-language-server",
       "json-lsp",

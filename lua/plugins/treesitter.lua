@@ -38,6 +38,9 @@ return {
       "yaml",
       "toml",
 
+      -- Go
+      "go",
+
       -- Other
       "markdown",
       "markdown_inline",

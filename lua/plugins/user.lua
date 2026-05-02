@@ -32,6 +32,23 @@ return {
     opts = {},
   },
 
+  -- Go language support
+  {
+    "rayx/go.nvim",
+    ft = "go",
+    dependencies = { "rayx/nvimtip", "nvim-lua/plenary.nvim" },
+    opts = {
+      goimports = "goimports",
+      goformatters = { "gofumpt" },
+      diagnostic = {
+        virtual_text = false,
+      },
+    },
+    config = function(_, opts)
+      require("go").setup(opts)
+    end,
+  },
+
   -- Auto close tags in HTML/JSX/Blade/Vue
   {
     "windwp/nvim-ts-autotag",
